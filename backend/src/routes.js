@@ -1,52 +1,60 @@
 const express = require("express");
-const { celebrate, Segments, Joi } = require("celebrate");
 
 const UsuarioController = require("./controllers/UsuarioController");
-const IncidentController = require("./controllers/IncidentController");
-const ProfileController = require("./controllers/ProfileController");
-const SessionController = require("./controllers/SessionController");
 const TreinoController = require("./controllers/TreinoController");
 
 const routes = express.Router();
 
-routes.post("/sessions", SessionController.create);
-
+/**
+ * Se passar id no body, retorna o usuario desse id
+ * Se passar idProfessor, retorna os usuarios que tem esse idProfessor,
+ * Se passar login e senha, retorna os usuários com esse login e senha
+ */
 routes.get("/usuario", UsuarioController.get);
+
+/**
+ * Retorna todos os usuarios
+ */
 routes.get("/usuarios", UsuarioController.index);
+
+/**
+ * Cria um usuario com TODOS os parametros passados no body
+ */
 routes.post("/usuario", UsuarioController.create);
 
+/**
+ * Cria um treino EXEMPLO:
+ {
+  "idUsuario": "b3dbf86e",
+  "grupoMuscular": "perna",
+	"exercicio": [
+		{
+			"repeticoes": "123",
+			"aparelho": "supino",
+			"tempo": "10segundos",
+			"intervalo": "5segundos"
+		},
+		{
+			"repeticoes": "1234",
+			"aparelho": "supino",
+			"tempo": "10segundos",
+			"intervalo": "5segundos"
+		},
+		{
+			"repeticoes": "12345",
+			"aparelho": "supino",
+			"tempo": "10segundos",
+			"intervalo": "5segundos"
+		},
+		{
+			"repeticoes": "123456",
+			"aparelho": "supino",
+			"tempo": "10segundos",
+			"intervalo": "5segundos"
+		}
+	]
+}
+ */
 routes.post("/treino", TreinoController.create);
-
-routes.get(
-  "/profile",
-  celebrate({
-    [Segments.HEADERS]: Joi.object({
-      authorization: Joi.string().required(),
-    }).unknown(),
-  }),
-  ProfileController.index
-);
-
-routes.get(
-  "/incidents",
-  celebrate({
-    [Segments.QUERY]: Joi.object().keys({
-      page: Joi.number(),
-    }),
-  }),
-  IncidentController.index
-);
-
-routes.post("/incidents", IncidentController.create);
-
-routes.delete(
-  "/incidents/:id",
-  celebrate({
-    [Segments.PARAMS]: Joi.object().keys({
-      id: Joi.number().required(),
-    }),
-  }),
-  IncidentController.delete
-);
 
 module.exports = routes;

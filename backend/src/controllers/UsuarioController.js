@@ -12,6 +12,14 @@ module.exports = {
     // const { nomeCompleto, tipoUsuario, idProfessor } = request.body;
 
     const id = generateUniqueId();
+    const login = request.body.login;
+
+    if (!!login) {
+      const exists = await connection("usuario").where("login", login);
+      if (exists.length > 0) {
+        return response.json({ error: "Login já cadastrado" });
+      }
+    }
 
     await connection("usuario").insert({
       id,
@@ -22,14 +30,18 @@ module.exports = {
   },
 
   async get(request, response) {
-    const { id, idProfessor } = request.body;
+    const { id, idProfessor, login, senha } = request.body;
     let usuario;
     if (!!id) {
       usuario = await connection("usuario").where("id", id);
-    }
-    if (!!idProfessor) {
+    } else if (!!idProfessor) {
       usuario = await connection("usuario").where("idProfessor", idProfessor);
+    } else if (!!login && !!senha) {
+      usuario = await connection("usuario")
+        .where("login", login)
+        .where("senha", senha);
     }
+
     console.log("usuario:", usuario);
 
     if (!!usuario && !!usuario.length) {
