@@ -5,6 +5,7 @@ const UsuarioController = require("./controllers/UsuarioController");
 const IncidentController = require("./controllers/IncidentController");
 const ProfileController = require("./controllers/ProfileController");
 const SessionController = require("./controllers/SessionController");
+const TreinoController = require("./controllers/TreinoController");
 
 const routes = express.Router();
 
@@ -13,6 +14,8 @@ routes.post("/sessions", SessionController.create);
 routes.get("/usuario", UsuarioController.get);
 routes.get("/usuarios", UsuarioController.index);
 routes.post("/usuario", UsuarioController.create);
+
+routes.post("/treino", TreinoController.create);
 
 routes.get(
   "/profile",

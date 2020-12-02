@@ -14,7 +14,13 @@ exports.up = function (knex) {
     // colunas de Aluno
     table.string("idProfessor");
     table.foreign("idProfessor").references("id").inTable("usuario");
-
+    table.string("fichaPeso");
+    table.string("fichaAltura");
+    table.string("fichaPressao");
+    table.string("fichaPercentualGordura");
+    table.string("fichaPercentualMassaMagra");
+    table.string("fichaIMC");
+    table.string("fichaSituacao");
     // table.string('uf', 2)
   });
 };

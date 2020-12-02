@@ -22,12 +22,30 @@ module.exports = {
   },
 
   async get(request, response) {
-    const { idProfessor } = request.body;
+    const { id, idProfessor } = request.body;
     let usuario;
+    if (!!id) {
+      usuario = await connection("usuario").where("id", id);
+    }
     if (!!idProfessor) {
       usuario = await connection("usuario").where("idProfessor", idProfessor);
     }
+    console.log("usuario:", usuario);
 
-    return response.json(usuario);
+    if (!!usuario && !!usuario.length) {
+      let newUsers = [];
+      for (const [Key, user] of usuario.entries()) {
+        const treinos = await connection("treino")
+          .where("idUsuario", user.id)
+          .innerJoin("exercicio", "treino.id", "exercicio.idTreino")
+          .select("*");
+        console.log("treinos:", treinos);
+        newUsers.push({ ...user, treinos });
+      }
+      console.log("newUsers:", newUsers);
+      if (!!newUsers.length) usuario = newUsers;
+    }
+
+    return response.json({ usuario });
   },
 };
