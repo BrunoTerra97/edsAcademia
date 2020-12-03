@@ -1,6 +1,6 @@
 <div class="main-box">
     <div style="font-size: x-large;">
-        Médico: {{ nomeMedico }}
+        Médico: {{ medico.nomeCompleto }}
     </div>
     <mat-card class="section"><mat-icon style="margin: 0px 5px;">map</mat-icon>Exame de aptidão física</mat-card>
 
@@ -44,37 +44,37 @@
     <div class="gridSolution nice-input">
         <mat-form-field class="example-full-width ">
             <mat-label>Nome Completo</mat-label>
-            <input matInput type="text" [(ngModel)] = "aluno.nome">
+            <input matInput type="text" [(ngModel)] = "aluno.nomeCompleto">
         </mat-form-field>
 
         <mat-form-field class="example-full-width ">
             <mat-label>Peso</mat-label>
-            <input matInput placeholder="Kg" type="number" [(ngModel)] = "aluno.peso">
+            <input matInput placeholder="Kg" type="text" [(ngModel)] = "aluno.fichaPeso">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Altura</mat-label>
-            <input matInput placeholder="Metros" type="number" [(ngModel)] = "aluno.altura">
+            <input matInput placeholder="Metros" type="text" [(ngModel)] = "aluno.fichaAltura">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Pressão arterial</mat-label>
-            <input matInput type="number" [(ngModel)] = "aluno.pressao">
+            <input matInput type="text" [(ngModel)] = "aluno.fichaPressao">
         </mat-form-field>
 
         <mat-form-field class="example-full-width ">
             <mat-label>% Gordura no Corpo</mat-label>
-            <input matInput type="number" [(ngModel)] = "aluno.gordura">
+            <input matInput type="text" [(ngModel)] = "aluno.fichaPercentualGordura">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>% Massa Magra</mat-label>
-            <input matInput type="number" [(ngModel)] = "aluno.massaMagra">
+            <input matInput type="text" [(ngModel)] = "aluno.fichaPercentualMassaMagra">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>IMC</mat-label>
-            <input matInput placeholder="Kg/m²" [(ngModel)] = "aluno.imc">
+            <input matInput placeholder="Kg/m²" [(ngModel)] = "aluno.fichaIMC">
         </mat-form-field>
     </div>
     
@@ -83,7 +83,7 @@
         <form class="example-form" #loginForm='ngForm' name="teste3">
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>O paciente está habil para atividade física</mat-label>
-                <mat-select name="teste2" [(ngModel)] = "aluno.aprovado">
+                <mat-select name="teste2" [(ngModel)] = "aluno.fichaSituacao">
                     <mat-option *ngFor="let aprovacao of aprovacaos" [value]="aprovacao.value">
                         {{aprovacao.viewValue}}
                     </mat-option>
@@ -100,6 +100,6 @@
         </mat-select>
     </div> -->
     <div>
-        <button [disabled]="!canFinish(false)" [ngClass]="{'disabled' : !canFinish(false)}" name="teste" class="nice-input transition" mat-stroked-button color="primary">Cadastrar!</button>
+        <button class="nice-input transition" (click)="cadastrar()" mat-stroked-button color="primary">Cadastrar!</button>
     </div>
 </div>
