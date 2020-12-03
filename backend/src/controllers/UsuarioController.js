@@ -142,7 +142,7 @@ module.exports = {
     const [usuarioo] = await connection("usuario").where("id", id);
     const { id: aaa, ...user } = usuarioo;
     const newUser = { ...user, ...req };
-    const success = await connection("usuario").update(newUser);
+    const success = await connection("usuario").where("id", id).update(newUser);
 
     return response.json({ success });
   },
