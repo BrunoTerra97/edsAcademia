@@ -12,8 +12,13 @@ export class UserPageComponent implements OnInit {
   aluno: any = getLocaleFirstDayOfWeek;
   showTreino = false;
   showTabela = true;
+  showExame = false;
 
   onClick() {
+    if (this.showTreino) {
+      this.showTreino = false;
+    }
+    this.showExame = !this.showExame;
     console.log(this.aluno);
     this.showTabela = !this.showTabela;
   }

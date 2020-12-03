@@ -1,15 +1,59 @@
 <div class="card-container">
-  <div (click)="showTreino = !showTreino" class="card card-small" tabindex="0">
+  <div
+    (click)="showTreino = !showTreino; showExame = false"
+    class="card card-small"
+    tabindex="0"
+  >
     <span>Ver treino cadastrado</span>
   </div>
   <div (click)="onClick()" class="card card-small" tabindex="0">
     <span>Ver exame de aptidão fisica</span>
   </div>
 </div>
+<div
+  *ngIf="showExame"
+  style="
+    box-shadow: 0px 3px 36px #00000029;
+    display: flex;
+    flex-direction: column;
+  "
+>
+  <span>Altura: {{ aluno.fichaAltura }}</span>
+  <span>IMC: {{ aluno.fichaIMC }}</span>
+  <span>(%)Gordura: {{ aluno.fichaPercentualGordura }}</span>
+  <span>(%)Massa magra:{{ aluno.fichaPercentualMassaMagra }}</span>
+  <span>Peso: {{ aluno.fichaPeso }}</span>
+  <span>Pressao: {{ aluno.fichaPressao }}</span>
+  <span>Apto: {{ aluno.fichaSituacao }}</span>
+</div>
 
-<div *ngIf="showTreino"></div>
+<div *ngIf="showTreino">
+  <div *ngFor="let treino of aluno.treinos">
+    <mat-card style="width: 20%; margin-left: 5%">
+      <mat-card-title>
+        {{ treino.grupoMuscular }}
+      </mat-card-title>
+      <mat-card-content>
+        <div
+          *ngFor="let exercicio of treino.exercicios; index as i"
+          style="display: flex; flex-direction: column"
+        >
+          <mat-divider></mat-divider>
+          <span style="font-size: 20px; font-style: bold"
+            >Exercicio #{{ i + 1 }}</span
+          >
+          <span>aparelho: {{ exercicio.aparelho }}</span>
+          <span>repetições: {{ exercicio.repeticoes }}</span>
+          <span>segurar por {{ exercicio.tempo }}</span>
+          <span>intervalo de {{ exercicio.intervalo }}</span>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
 
-<div *ngIf="!showTreino" class="w-100p h-100">
+<div *ngIf="!showTreino && !showExame" class="w-100p h-100">
   <div class="grid">
     <div class="column">
       <span></span>
