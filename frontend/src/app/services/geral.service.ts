@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class GeralService {
-
   constructor(private http: HttpClient) {}
 
   getUsers() {
@@ -30,5 +29,8 @@ export class GeralService {
 
   getAlunos() {
     return this.http.get('http://localhost:3333/usuarios');
+  }
+  insertTreino(treino: any) {
+    return this.http.post('http://localhost:3333/treino', treino);
   }
 }

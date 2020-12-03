@@ -9,17 +9,36 @@
         }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <div style="text-align: center">
+    <div *ngIf="selectedAluno" style="text-align: center">
       Treinos:
-      <div *ngFor="let treino of treinos; index as i">
-        <div>
-          <div style="text-align: center; font-size: 18px">
-            TREINO #{{ i }} - {{ treino.grupoMuscular }}
-          </div>
+      <div style="display: flex; flex-direction: row; width: 100%">
+        <div *ngFor="let treino of treinos">
+          <mat-card style="margin-left: 5%">
+            <mat-card-title>
+              {{ treino.grupoMuscular }}
+              <button mat-button (click)="expand = !expand">Visualizar</button>
+            </mat-card-title>
+            <mat-card-content *ngIf="expand">
+              <div
+                *ngFor="let exercicio of treino.exercicios; index as i"
+                style="display: flex; flex-direction: column"
+              >
+                <mat-divider></mat-divider>
+                <span style="font-size: 20px; font-style: bold"
+                  >Exercicio #{{ i + 1 }}</span
+                >
+                <span>aparelho: {{ exercicio.aparelho }}</span>
+                <span>repetições: {{ exercicio.repeticoes }}</span>
+                <span>segurar por {{ exercicio.tempo }}</span>
+                <span>intervalo de {{ exercicio.intervalo }}</span>
+                <mat-divider></mat-divider>
+              </div>
+            </mat-card-content>
+          </mat-card>
         </div>
       </div>
     </div>
-    <div>
+    <div *ngIf="selectedAluno">
       <button mat-flat-button (click)="treino = !treino">
         Adicionar treino
       </button>
@@ -57,6 +76,17 @@
         Adicionar Exercicio
       </button>
     </div>
+    <div *ngIf="exercicios.length > 0">
+      <ul>
+        <li *ngFor="let exercicio of exercicios">
+          {{ exercicio.aparelho }}
+          <button mat-icon-button (click)="delete(exercicio)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </li>
+      </ul>
+      <button mat-button (click)="submitTreino()">Confirmar Treino</button>
+    </div>
     <form
       [formGroup]="formExercicio"
       (ngSubmit)="onExercicioSubmit(formExercicio.value)"
@@ -66,10 +96,6 @@
       <mat-form-field class="input">
         <mat-label>Aparelho</mat-label>
         <input matInput formControlName="aparelho" />
-      </mat-form-field>
-      <mat-form-field class="input">
-        <mat-label>Carga</mat-label>
-        <input matInput formControlName="carga" />
       </mat-form-field>
       <mat-form-field class="input">
         <mat-label>Tempo</mat-label>

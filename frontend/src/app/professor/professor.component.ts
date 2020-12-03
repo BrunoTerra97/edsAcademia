@@ -14,6 +14,7 @@ export class ProfessorComponent implements OnInit {
   formExercicio: any;
   alunos: any;
   professor: any;
+  expand = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,7 +30,6 @@ export class ProfessorComponent implements OnInit {
       aparelho: '',
       tempo: '',
       intervalo: '',
-      carga: '',
     });
   }
   treino = false;
@@ -46,6 +46,14 @@ export class ProfessorComponent implements OnInit {
   }
   onExercicioSubmit(exerciciodata: Exercicio) {
     this.exercicios.push(exerciciodata);
+    this.exercicio = false;
+    this.formExercicio = this.formBuilder.group({
+      repeticoes: '',
+      aparelho: '',
+      tempo: '',
+      intervalo: '',
+      carga: '',
+    });
     console.log(this.exercicios);
   }
   ngOnInit(): void {
@@ -60,6 +68,8 @@ export class ProfessorComponent implements OnInit {
     });
   }
   getAluno() {
+    this.treinos = [];
+    console.log(this.selectedAluno);
     let info = {
       login: this.selectedAluno.login,
       senha: this.selectedAluno.senha,
@@ -68,6 +78,22 @@ export class ProfessorComponent implements OnInit {
       console.log(aluno.usuario[0]);
       this.treinos = aluno.usuario[0].treinos;
     });
+  }
+  delete(exercicio: any) {
+    console.log(exercicio);
+    const index = this.exercicios.findIndex((ex) => ex == exercicio);
+    console.log(index);
+    this.exercicios.splice(index, 1);
+  }
+  submitTreino() {
+    let treino = {
+      exercicio: this.exercicios,
+      grupoMuscular: this.newTreino.group,
+      idUsuario: this.selectedAluno.id,
+    };
+    this.service.insertTreino(treino).subscribe();
+    this.newTreino = null;
+    this.exercicios = [];
   }
 }
 
