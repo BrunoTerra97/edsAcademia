@@ -21,7 +21,7 @@ export class GeralService {
   }
 
   updateUser(usuario: any) {
-    return this.http.put('http://localhost:3333/usuario', usuario);
+    return this.http.post('http://localhost:3333/usuarioPut', usuario);
   }
 
   login(login: any) {

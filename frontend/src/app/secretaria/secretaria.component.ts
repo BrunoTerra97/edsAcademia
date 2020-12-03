@@ -80,6 +80,7 @@ export class SecretariaComponent implements OnInit {
   }
 
   cadastrar(){
+    console.log(this.aluno)
     this.service.updateUser(this.aluno).subscribe((value: any) => {
       this._snackBar.open('Usuario cadastrado com sucesso!', 'Fechar', {
         duration: 4000,
