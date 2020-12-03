@@ -142,7 +142,7 @@ module.exports = {
     const [usuarioo] = await connection("usuario").where("id", id);
     const { id: aaa, ...user } = usuarioo;
     const newUser = { ...user, ...req };
-    const success = await connection("usuario").update(newUser);
+    const success = await connection("usuario").where("id", id).update(newUser);
 
     return response.json({ success });
   },
@@ -185,23 +185,23 @@ module.exports = {
 
     if (!!usuario && !!usuario.length) {
       let newUsers = [];
-      for (const [Key, user] of usuario.entries()) {
-        const treinos = await connection("treino").where("idUsuario", user.id);
-
-        console.log("treinos:".treinos);
-        for (const [Key, treino] of treinos.entries()) {
-          const exercicio = await connection("exercicio")
+      for (const [userIndex, user] of usuario.entries()) {
+        const treinos = await connection("treino")
+          .where("idUsuario", user.id)
+          .select("*");
+        console.log("treinos:", treinos);
+        usuario[userIndex]["treinos"] = treinos;
+        for (const [treinoIndex, treino] of treinos.entries()) {
+          const exercicios = await connection("exercicio")
             .where("idTreino", treino.id)
             .select("*");
-          console.log("exercicio:".exercicio);
+          usuario[userIndex]["treinos"][treinoIndex]["exercicios"] = exercicios;
         }
-        // console.log("treinos:", treinos);
-        newUsers.push({ ...user, treinos });
       }
-      console.log("newUsers:", newUsers);
       if (!!newUsers.length) usuario = newUsers;
     }
-
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    console.log("usuario:", usuario);
     newUsers = usuario.map((u) => {
       console.log("u.idModalidade:", u.idModalidade);
       if (!!u.idModalidade) {
