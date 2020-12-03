@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeralService } from '../services/geral.service';
 
 interface Habilitacao {
   value: boolean;
@@ -24,31 +25,35 @@ export class MedicoComponent implements OnInit {
 
   aluno: any = {
     nome: "",
+    ausculta: null,
+    pressao: null,
+    anamnese: null,
     peso: null,
     altura: null,
-    pressao: null,
+    valorPressao: null,
     gordura: null,
     massaMagra: null,
     imc: null,
     aprovado: false
   };
-  aprovado: any = false;
-  nome: any;
-  peso: any;
-  altura: any;
-  pressao: any;
-  gordura: any;
-  massaMagra: any;
-  imc: any;
   nomeMedico: any = "Fulano";
+  // aprovado: any = false;
+  // nome: any;
+  // peso: any;
+  // altura: any;
+  // pressao: any;
+  // gordura: any;
+  // massaMagra: any;
+  // imc: any;
 
-  constructor() { }
+  constructor(private service: GeralService) { }
 
   ngOnInit(): void {
+    //getUser();
   }
 
   canFinish(isHouse: boolean) {
-    return this.aprovado;
+    return this.aluno.aprovado;
   }
 
 }

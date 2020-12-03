@@ -8,7 +8,7 @@
         <form class="example-form" #loginForm='ngForm'>
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Ausculta Cardiorrespiratória</mat-label>
-                <mat-select>
+                <mat-select name="teste4" [(ngModel)] = "aluno.ausculta">
                     <mat-option *ngFor="let exame of exames" [value]="exame.value">
                         {{exame.viewValue}}
                     </mat-option>
@@ -17,7 +17,7 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Aferição da Pressão Arterial</mat-label>
-                <mat-select>
+                <mat-select name="teste5" [(ngModel)] = "aluno.pressao">
                     <mat-option *ngFor="let exame of exames" [value]="exame.value">
                         {{exame.viewValue}}
                     </mat-option>
@@ -26,7 +26,7 @@
             
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Anamnese</mat-label>
-                <mat-select>
+                <mat-select name="teste6" [(ngModel)] = "aluno.anamnese">
                     <mat-option *ngFor="let exame of exames" [value]="exame.value">
                         {{exame.viewValue}}
                     </mat-option>
@@ -59,7 +59,7 @@
 
         <mat-form-field class="example-full-width">
             <mat-label>Pressão arterial</mat-label>
-            <input matInput type="number" [(ngModel)] = "aluno.pressao">
+            <input matInput type="number" [(ngModel)] = "aluno.valorPressao">
         </mat-form-field>
 
         <mat-form-field class="example-full-width ">
@@ -100,6 +100,6 @@
         </mat-select>
     </div> -->
     <div>
-        <button [disabled]="!canFinish(false)" [ngClass]="{'disabled' : !canFinish(false)}" name="teste" class="nice-input transition" mat-stroked-button color="primary">Cadastrar!</button>
+        <button class="nice-input transition" mat-stroked-button color="primary">Cadastrar!</button>
     </div>
 </div>

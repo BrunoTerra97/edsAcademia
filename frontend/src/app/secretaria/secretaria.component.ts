@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeralService } from '../services/geral.service';
 
 interface Habilitacao {
   value: boolean;
@@ -21,22 +22,29 @@ export class SecretariaComponent implements OnInit {
     {value: true, viewValue: 'Sim'},
     {value: false, viewValue: 'Não'}
   ];
-  aprovado: any = false;
-  nome: any;
-  peso: any;
-  altura: any;
-  pressao: any;
-  gordura: any;
-  massaMagra: any;
-  imc: any;
-  nomeMedico: any = "Fulano";
+  aluno: any = {
+    nome: "",
+    ausculta: null,
+    pressao: null,
+    anamnese: null,
+    peso: null,
+    altura: null,
+    valorPressao: null,
+    gordura: null,
+    massaMagra: null,
+    imc: null,
+    aprovado: false
+  };
+  nomeSecretaria: any = "Fulano";
+  alunos: any;
 
-  constructor() { }
+  constructor(private service: GeralService) { }
 
   ngOnInit(): void {
+    this.alunos = getUsersAllowed()
   }
 
   canFinish(isHouse: boolean) {
-    return this.aprovado;
+    return this.aluno.aprovado;
   }
 }

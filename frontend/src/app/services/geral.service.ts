@@ -5,9 +5,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class GeralService {
+
+  usuarios: any;
+
   constructor(private http: HttpClient) {}
 
-  getUser() {
-    return this.http.get('url');
+  getUsersAllowed() {
+    this.usuarios = this.http.get('localhost:3333/usuarios');
+    return this.usuarios.filter( (usuario: any) => usuario.fichaSituacao == "true")
   }
 }
