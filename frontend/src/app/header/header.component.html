@@ -7,7 +7,8 @@
       *ngIf="!logoutDisabled"
       mat-button
       style="margin-right: 5em"
-      (click)="logout()"
+      routerLink="/app-login"
+      routerLinkActive="active"
     >
       <mat-icon style="margin-right: 0.3em">login</mat-icon>Log Out
     </button>

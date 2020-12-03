@@ -71,7 +71,7 @@ export class SecretariaComponent implements OnInit {
     }
     this.secretaria = history.state.data;
     this.service.getUsers().subscribe((value: any) => {
-      this.usuarios = value.filter((usuario: any) => usuario.fichaSituacao == "true");
+      this.usuarios = value.filter((usuario: any) => usuario.fichaSituacao == "true" || usuario.fichaSituacao == null);
     })
   }
 
