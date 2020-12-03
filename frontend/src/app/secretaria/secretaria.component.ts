@@ -20,7 +20,6 @@ interface Tipo {
 })
 export class SecretariaComponent implements OnInit {
 
-  //ausculta: any = ["Aprovado", "Reproavdo"];
   exames: Habilitacao[] = [
     {value: true, viewValue: 'Aprovado'},
     {value: false, viewValue: 'Reprovado'}
@@ -41,6 +40,7 @@ export class SecretariaComponent implements OnInit {
     {value: 1, viewValue: 'Semestral'},
     {value: 1, viewValue: 'Anual'}
   ];
+
   aluno: any = {
     id: "",
     login: "",
@@ -51,12 +51,23 @@ export class SecretariaComponent implements OnInit {
     cartaoNumero: "",
     cartaoBandeira: "",
     cartaoProprietario: "",
-    idModalidade: ""
+    idModalidade: "",
+    idPlano: ""
   };
-  //
-  planoEscolhido: any;
-  //
-  nomeSecretaria: any = "Fulano";
+  alunoBackup: any = {
+    id: "",
+    login: "",
+    senha: "",
+    cpf: "",
+    identidade: "",
+    dataNascimento: "",
+    cartaoNumero: "",
+    cartaoBandeira: "",
+    cartaoProprietario: "",
+    idModalidade: "",
+    idPlano: ""
+  };
+
   secretaria: any;
   usuarios: any;
 
@@ -82,6 +93,7 @@ export class SecretariaComponent implements OnInit {
   cadastrar(){
     console.log(this.aluno)
     this.service.updateUser(this.aluno).subscribe((value: any) => {
+      this.aluno = this.alunoBackup
       this._snackBar.open('Usuario cadastrado com sucesso!', 'Fechar', {
         duration: 4000,
       });
