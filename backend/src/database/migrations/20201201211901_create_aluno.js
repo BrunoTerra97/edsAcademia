@@ -7,7 +7,7 @@ exports.up = function (knex) {
     table.string("senha");
     table.string("cpf");
     table.string("identidade");
-    table.date("dataNascimento");
+    table.string("dataNascimento");
     table.string("cartaoNumero");
     table.string("cartaoBandeira");
     table.string("cartaoProprietario");

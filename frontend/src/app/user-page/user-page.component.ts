@@ -1,3 +1,4 @@
+import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,6 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPageComponent implements OnInit {
   constructor() {}
+
+  aluno: any = getLocaleFirstDayOfWeek;
+
+  showTabela = true;
+
+  onClick() {
+    this.showTabela = !this.showTabela;
+  }
+
   horarios = [
     '6:30',
     '7:00',
@@ -37,5 +47,218 @@ export class UserPageComponent implements OnInit {
     '19:30',
     '20:00',
   ];
-  ngOnInit(): void {}
+
+  segunda = [
+    'Crossfit',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+  ];
+
+  terca = [
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'Crossfit',
+    'Natação',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+  ];
+
+  quarta = [
+    'X',
+    'X',
+    'X',
+    'X',
+    'Natação',
+    'Crossfit',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+  ];
+
+  quinta = [
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+  ];
+
+  sexta = [
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'Natação',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+  ];
+
+  sabado = [
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+  ];
+
+  domingo = [
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+    'X',
+  ];
+
+  ngOnInit(): void {
+    this.aluno = history.state.data;
+  }
 }

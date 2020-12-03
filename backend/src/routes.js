@@ -9,6 +9,7 @@ const routes = express.Router();
 routes.post("/modalidades", ModalidadeController.create);
 routes.get("/modalidades", ModalidadeController.index);
 
+routes.post("/usuarioPut", UsuarioController.put);
 /**
  * Se passar id no body, retorna o usuario desse id
  * Se passar idProfessor, retorna os usuarios que tem esse idProfessor,

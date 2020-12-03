@@ -2,37 +2,46 @@
   <div class="card card-small" tabindex="0">
     <span>Ver treino cadastrado</span>
   </div>
-  <div class="card card-small" tabindex="0">
+  <div (click)="onClick()" class="card card-small" tabindex="0">
     <span>Ver exame de aptidão fisica</span>
   </div>
 </div>
-<div class="w-100p h-100">
+
+<div class="w-100p h-100" *ngIf="showTabela">
   <div class="grid">
     <div class="column">
       <span></span>
-      <span class="item" *ngFor="let horario of horarios">{{ horario }}</span>
+      <span class="item" class="item" *ngFor="let horario of horarios">{{
+        horario
+      }}</span>
     </div>
     <div class="column">
       <span>Segunda</span>
-      <span></span>
+      <span class="item" *ngFor="let horario of segunda">{{ horario }}</span>
     </div>
     <div class="column">
       <span>Terça</span>
+      <span class="item" *ngFor="let horario of terca">{{ horario }}</span>
     </div>
     <div class="column">
       <span>Quarta</span>
+      <span class="item" *ngFor="let horario of quarta">{{ horario }}</span>
     </div>
     <div class="column">
       <span>Quinta</span>
+      <span class="item" *ngFor="let horario of quinta">{{ horario }}</span>
     </div>
     <div class="column">
       <span>Sexta</span>
+      <span class="item" *ngFor="let horario of sexta">{{ horario }}</span>
     </div>
     <div class="column">
       <span>Sábado</span>
+      <span class="item" *ngFor="let horario of sabado">{{ horario }}</span>
     </div>
     <div class="column">
       <span>Domingo</span>
+      <span class="item" *ngFor="let horario of domingo">{{ horario }}</span>
     </div>
   </div>
 </div>
