@@ -8,7 +8,7 @@ import { GeralService } from '../services/geral.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  login: any = 'fael';
+  login: any;
   senha: any;
 
   constructor(private router: Router, private service: GeralService) {}

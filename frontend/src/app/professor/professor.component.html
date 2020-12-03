@@ -1,20 +1,22 @@
 <div>
   <div class="column">
+    <h1>Bem vindo professor {{ professor.nomeCompleto }}</h1>
     <mat-form-field>
-      <mat-select [(ngModel)]="selectedAluno">
+      <mat-label>Alunos</mat-label>
+      <mat-select [(ngModel)]="selectedAluno" (selectionChange)="getAluno()">
         <mat-option *ngFor="let aluno of alunos" [value]="aluno">{{
-          aluno.name
+          aluno.nomeCompleto
         }}</mat-option>
       </mat-select>
     </mat-form-field>
     <div style="text-align: center">
       Treinos:
-      <div *ngFor="let treino of treinos">
-        <mat-card>
-          <mat-card-header style="text-align: center; font-size: 18px">
-            {{ treino.name }} - {{ treino.group }}
-          </mat-card-header>
-        </mat-card>
+      <div *ngFor="let treino of treinos; index as i">
+        <div>
+          <div style="text-align: center; font-size: 18px">
+            TREINO #{{ i }} - {{ treino.grupoMuscular }}
+          </div>
+        </div>
       </div>
     </div>
     <div>

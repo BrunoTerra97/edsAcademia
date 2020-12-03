@@ -12,7 +12,9 @@ export class GeralService {
   }
 
   login(login: any) {
-    console.log(login);
     return this.http.post('http://localhost:3333/usuarioGet', login);
+  }
+  getAlunos() {
+    return this.http.get('http://localhost:3333/usuarios');
   }
 }
