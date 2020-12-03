@@ -14,6 +14,7 @@ exports.up = function (knex) {
     // colunas de Aluno
     table.string("idProfessor");
     table.foreign("idProfessor").references("id").inTable("usuario");
+    table.string("idModalidade");
     table.string("fichaPeso");
     table.string("fichaAltura");
     table.string("fichaPressao");

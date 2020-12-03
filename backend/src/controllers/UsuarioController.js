@@ -1,6 +1,134 @@
 const generateUniqueId = require("../utils/generateUniqueId");
 const connection = require("../database/connection");
 
+const modalidades = [
+  {
+    id: 1,
+    tipoModalidade: "crossfit",
+    nome: "crossfit",
+    plano: [
+      {
+        periodo: "Mensal",
+        frequencia: "3",
+        valor: "155,00",
+      },
+      {
+        periodo: "Semestral",
+        frequencia: "3",
+        valor: "139,00",
+      },
+      {
+        periodo: "Anual",
+        frequencia: "3",
+        valor: "130,00",
+      },
+    ],
+    horarioFuncionamento: [
+      { horario: "06:30" },
+      { horario: "08:30" },
+      { horario: "10:15" },
+      { horario: "18:00" },
+      { horario: "20:00" },
+    ],
+  },
+  {
+    id: 2,
+    tipoModalidade: "Natação",
+    nome: "Natação",
+    plano: [
+      {
+        periodo: "Mensal",
+        frequencia: "2",
+        valor: "215,00",
+      },
+      {
+        periodo: "Semestral",
+        frequencia: "2",
+        valor: "193,00",
+      },
+      {
+        periodo: "Anual",
+        frequencia: "2",
+        valor: "182,00",
+      },
+      {
+        periodo: "Mensal",
+        frequencia: "3",
+        valor: "229,00",
+      },
+      {
+        periodo: "Semestral",
+        frequencia: "3",
+        valor: "206,00",
+      },
+      {
+        periodo: "Anual",
+        frequencia: "3",
+        valor: "189,00",
+      },
+    ],
+    horarioFuncionamento: [
+      { horario: "08:00" },
+      { horario: "10:00" },
+      { horario: "17:00" },
+      { horario: "19:00" },
+      { horario: "20:00" },
+    ],
+  },
+  {
+    id: 3,
+    tipoModalidade: "Musculação",
+    nome: "Musculação",
+    plano: [
+      {
+        periodo: "Mensal",
+        frequencia: "7",
+        valor: "125,00",
+      },
+      {
+        periodo: "Semestral",
+        frequencia: "7",
+        valor: "112,00",
+      },
+      {
+        periodo: "Anual",
+        frequencia: "7",
+        valor: "106,00",
+      },
+    ],
+    horarioFuncionamento: [],
+  },
+  {
+    id: 4,
+    tipoModalidade: "Ritmos",
+    nome: "Ritmos",
+    plano: [
+      {
+        periodo: "Mensal",
+        frequencia: "3",
+        valor: "155,00",
+      },
+      {
+        periodo: "Semestral",
+        frequencia: "3",
+        valor: "139,00",
+      },
+      {
+        periodo: "Anual",
+        frequencia: "3",
+        valor: "130,00",
+      },
+    ],
+    horarioFuncionamento: [
+      { horario: "06:30" },
+      { horario: "08:30" },
+      { horario: "10:15" },
+      { horario: "18:00" },
+      { horario: "20:00" },
+    ],
+  },
+];
+
 module.exports = {
   async index(request, response) {
     const usuario = await connection("usuario").select("*");
@@ -58,6 +186,14 @@ module.exports = {
       if (!!newUsers.length) usuario = newUsers;
     }
 
-    return response.json({ usuario });
+    newUsers = usuario.map((u) => {
+      console.log("u.idModalidade:", u.idModalidade);
+      if (!!u.idModalidade) {
+        u.modalidades = modalidades.filter((m) => m.id == u.idModalidade)[0];
+      }
+      return u;
+    });
+
+    return response.json({ usuario: newUsers });
   },
 };
