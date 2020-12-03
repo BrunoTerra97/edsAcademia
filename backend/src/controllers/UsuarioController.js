@@ -136,6 +136,17 @@ module.exports = {
     return response.json(usuario);
   },
 
+  async put(request, response) {
+    const { id, ...req } = request.body;
+
+    const [usuarioo] = await connection("usuario").where("id", id);
+    const { id: aaa, ...user } = usuarioo;
+    const newUser = { ...user, ...req };
+    const success = await connection("usuario").update(newUser);
+
+    return response.json({ success });
+  },
+
   async create(request, response) {
     // const { nomeCompleto, tipoUsuario, idProfessor } = request.body;
 
@@ -175,11 +186,16 @@ module.exports = {
     if (!!usuario && !!usuario.length) {
       let newUsers = [];
       for (const [Key, user] of usuario.entries()) {
-        const treinos = await connection("treino")
-          .where("idUsuario", user.id)
-          .innerJoin("exercicio", "treino.id", "exercicio.idTreino")
-          .select("*");
-        console.log("treinos:", treinos);
+        const treinos = await connection("treino").where("idUsuario", user.id);
+
+        console.log("treinos:".treinos);
+        for (const [Key, treino] of treinos.entries()) {
+          const exercicio = await connection("exercicio")
+            .where("idTreino", treino.id)
+            .select("*");
+          console.log("exercicio:".exercicio);
+        }
+        // console.log("treinos:", treinos);
         newUsers.push({ ...user, treinos });
       }
       console.log("newUsers:", newUsers);
