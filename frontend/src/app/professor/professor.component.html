@@ -1,0 +1,87 @@
+<div>
+  <div class="column">
+    <mat-form-field>
+      <mat-select [(ngModel)]="selectedAluno">
+        <mat-option *ngFor="let aluno of alunos" [value]="aluno">{{
+          aluno.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div style="text-align: center">
+      Treinos:
+      <div *ngFor="let treino of treinos">
+        <mat-card>
+          <mat-card-header style="text-align: center; font-size: 18px">
+            {{ treino.name }} - {{ treino.group }}
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </div>
+    <div>
+      <button mat-flat-button (click)="treino = !treino">
+        Adicionar treino
+      </button>
+    </div>
+    <form
+      [formGroup]="formTreino"
+      (ngSubmit)="onTreinoSubmit(formTreino.value)"
+      *ngIf="treino"
+      class="box"
+    >
+      <mat-form-field class="input">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Grupo Muscular</mat-label>
+        <mat-select formControlName="group">
+          <mat-option value="cabeça"
+            >músculos da cabeça e do pescoço</mat-option
+          >
+          <mat-option value="peito">músculos do tórax e abdômen</mat-option>
+          <mat-option value="braço">músculos dos membros superiores</mat-option>
+          <mat-option value="perna">músculos dos membros inferiores</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-button type="submit">OK</button>
+    </form>
+    <div *ngIf="newTreino">
+      <mat-card style="margin-bottom: 2em">
+        <mat-card-header style="text-align: center; font-size: 18px">
+          {{ newTreino.name }} - {{ newTreino.group }}
+        </mat-card-header>
+      </mat-card>
+      <button mat-stroked-button (click)="exercicio = !exercicio">
+        Adicionar Exercicio
+      </button>
+    </div>
+    <form
+      [formGroup]="formExercicio"
+      (ngSubmit)="onExercicioSubmit(formExercicio.value)"
+      *ngIf="exercicio"
+      class="box"
+    >
+      <mat-form-field class="input">
+        <mat-label>Aparelho</mat-label>
+        <input matInput formControlName="aparelho" />
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Carga</mat-label>
+        <input matInput formControlName="carga" />
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Tempo</mat-label>
+        <input matInput formControlName="tempo" />
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Repetições</mat-label>
+        <input matInput formControlName="repeticoes" />
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Intervalo</mat-label>
+        <input matInput formControlName="intervalo" />
+      </mat-form-field>
+      <button mat-button type="submit">OK</button>
+    </form>
+  </div>
+</div>
