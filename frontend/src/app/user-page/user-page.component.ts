@@ -10,10 +10,11 @@ export class UserPageComponent implements OnInit {
   constructor() {}
 
   aluno: any = getLocaleFirstDayOfWeek;
-
+  showTreino = false;
   showTabela = true;
 
   onClick() {
+    console.log(this.aluno);
     this.showTabela = !this.showTabela;
   }
 

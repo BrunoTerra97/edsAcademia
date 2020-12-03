@@ -1,5 +1,5 @@
 <div class="card-container">
-  <div class="card card-small" tabindex="0">
+  <div (click)="showTreino = !showTreino" class="card card-small" tabindex="0">
     <span>Ver treino cadastrado</span>
   </div>
   <div (click)="onClick()" class="card card-small" tabindex="0">
@@ -7,7 +7,9 @@
   </div>
 </div>
 
-<div class="w-100p h-100" *ngIf="showTabela">
+<div *ngIf="showTreino"></div>
+
+<div *ngIf="!showTreino" class="w-100p h-100">
   <div class="grid">
     <div class="column">
       <span></span>
