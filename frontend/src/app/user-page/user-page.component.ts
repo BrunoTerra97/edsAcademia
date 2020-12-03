@@ -37,6 +37,5 @@ export class UserPageComponent implements OnInit {
     '19:30',
     '20:00',
   ];
-
   ngOnInit(): void {}
 }
