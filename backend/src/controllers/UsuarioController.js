@@ -186,6 +186,7 @@ module.exports = {
     if (!!usuario && !!usuario.length) {
       let newUsers = [];
       for (const [Key, user] of usuario.entries()) {
+        console.log("user:", user);
         const treinos = await connection("treino").where("idUsuario", user.id);
 
         console.log("treinos:".treinos);
@@ -193,7 +194,7 @@ module.exports = {
           const exercicio = await connection("exercicio")
             .where("idTreino", treino.id)
             .select("*");
-          console.log("exercicio:".exercicio);
+          console.log("exercicio:", exercicio);
         }
         // console.log("treinos:", treinos);
         newUsers.push({ ...user, treinos });
