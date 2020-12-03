@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { GeralService } from '../services/geral.service';
 
 interface Habilitacao {
-  value: boolean;
+  value: string;
   viewValue: string;
 }
 
@@ -15,37 +17,50 @@ export class MedicoComponent implements OnInit {
 
   //ausculta: any = ["Aprovado", "Reproavdo"];
   exames: Habilitacao[] = [
-    {value: true, viewValue: 'Aprovado'},
-    {value: false, viewValue: 'Reprovado'}
+    {value: "true", viewValue: 'Aprovado'},
+    {value: "false", viewValue: 'Reprovado'}
   ];
   aprovacaos: Habilitacao[] = [
-    {value: true, viewValue: 'Sim'},
-    {value: false, viewValue: 'Não'}
+    {value: "true", viewValue: 'Sim'},
+    {value: "false", viewValue: 'Não'}
   ];
 
   aluno = {
     nomeCompleto: "",
-    fichaPeso: null,
-    fichaAltura: null,
-    fichaPressao: null,
-    fichaPercentualGordura: null,
-    fichaPercentualMassaMagra: null,
-    fichaIMC: null,
-    fichaSituacao: false
+    tipoUsuario: "aluno",
+    fichaPeso: "",
+    fichaAltura: "",
+    fichaPressao: "",
+    fichaPercentualGordura: "",
+    fichaPercentualMassaMagra: "",
+    fichaIMC: "",
+    fichaSituacao: ""
   };
   nomeMedico: any = "Fulano";
-  // aprovado: any = false;
-  // nome: any;
-  // peso: any;
-  // altura: any;
-  // pressao: any;
-  // gordura: any;
-  // massaMagra: any;
-  // imc: any;
+  medico: any;
 
-  constructor(private service: GeralService) { }
+  constructor(
+    private service: GeralService,
+    private router: Router,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    //getUser();
+    if (history.state.data == null) {
+      this.router.navigate(['app-login']);
+    }
+    this.medico = history.state.data;
+  }
+
+  cadastrar(){
+    console.log(this.aluno)
+    this.service.insertUser(this.aluno).subscribe((value: any) => {
+      this._snackBar.open('Usuario cadastrado com sucesso!', 'Fechar', {
+        duration: 4000,
+      });
+    }, (error: any) => {
+      this._snackBar.open('Erro no cadastro!', 'Fechar', {
+        duration: 4000,
+      });
+    })
   }
 }
