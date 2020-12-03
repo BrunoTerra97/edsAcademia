@@ -8,7 +8,7 @@
         <form class="example-form" #loginForm='ngForm'>
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Ausculta Cardiorrespiratória</mat-label>
-                <mat-select>
+                <mat-select name="teste5" [(ngModel)] = "ausculta">
                     <mat-option *ngFor="let exame of exames" [value]="exame.value">
                         {{exame.viewValue}}
                     </mat-option>
@@ -17,7 +17,7 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Aferição da Pressão Arterial</mat-label>
-                <mat-select>
+                <mat-select name="teste6" [(ngModel)] = "pressaoArterial">
                     <mat-option *ngFor="let exame of exames" [value]="exame.value">
                         {{exame.viewValue}}
                     </mat-option>
@@ -26,7 +26,7 @@
             
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Anamnese</mat-label>
-                <mat-select>
+                <mat-select name="teste7" [(ngModel)] = "anamnese">
                     <mat-option *ngFor="let exame of exames" [value]="exame.value">
                         {{exame.viewValue}}
                     </mat-option>

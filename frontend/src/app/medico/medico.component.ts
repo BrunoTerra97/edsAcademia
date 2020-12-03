@@ -36,7 +36,25 @@ export class MedicoComponent implements OnInit {
     fichaIMC: "",
     fichaSituacao: ""
   };
-  nomeMedico: any = "Fulano";
+  alunoBackup = {
+    nomeCompleto: "",
+    tipoUsuario: "aluno",
+    fichaPeso: "",
+    fichaAltura: "",
+    fichaPressao: "",
+    fichaPercentualGordura: "",
+    fichaPercentualMassaMagra: "",
+    fichaIMC: "",
+    fichaSituacao: ""
+  };
+  
+  ausculta: any;
+  pressaoArterial: any;
+  anamnese: any;
+  auscultaBackup: any;
+  pressaoArterialBackup: any;
+  anamneseBackup: any;
+
   medico: any;
 
   constructor(
@@ -54,6 +72,10 @@ export class MedicoComponent implements OnInit {
   cadastrar(){
     console.log(this.aluno)
     this.service.insertUser(this.aluno).subscribe((value: any) => {
+      this.aluno = this.alunoBackup
+      this.ausculta = this.auscultaBackup
+      this.pressaoArterial = this.pressaoArterialBackup
+      this.anamnese = this.anamneseBackup
       this._snackBar.open('Usuario cadastrado com sucesso!', 'Fechar', {
         duration: 4000,
       });
