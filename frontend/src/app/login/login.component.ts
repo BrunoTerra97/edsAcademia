@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -12,28 +11,16 @@ export class LoginComponent implements OnInit {
   login: any = 'fael';
   senha: any;
 
-  constructor(private router: Router, private dialog:MatDialog) { 
+  constructor(private router: Router) { 
 
   }
 
   ngOnInit(): void {
   }
 
-  teste(){
+  loginClick(){
     //this.router.navigate(['/app-teste'])
-    //console.log(this.login)
-    this.dialog.open(modalLoginComponent)
-  }
-
-}
-
-@Component({
-  selector: 'qualquercoisa-modal',
-  templateUrl: './modalLogin.component.html'
-})
-export class modalLoginComponent{
-
-  constructor(private router: Router) { 
-
+    console.log(this.login)
+    //this.dialog.open(modalLoginComponent)
   }
 }
