@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {
     this.router.events.subscribe((url: any) => {
-      console.log(url.url);
       if (url.url === '/app-login') {
         this.logoutDisabled = true;
       } else if (url.url != null) {
