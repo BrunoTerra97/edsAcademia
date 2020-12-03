@@ -14,7 +14,7 @@ routes.get("/modalidades", ModalidadeController.index);
  * Se passar idProfessor, retorna os usuarios que tem esse idProfessor,
  * Se passar login e senha, retorna os usuários com esse login e senha
  */
-routes.get("/usuario", UsuarioController.get);
+routes.post("/usuarioGet", UsuarioController.get);
 
 /**
  * Retorna todos os usuarios
