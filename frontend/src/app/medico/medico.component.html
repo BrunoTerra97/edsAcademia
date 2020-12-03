@@ -8,7 +8,7 @@
         <form class="example-form" #loginForm='ngForm'>
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Ausculta Cardiorrespiratória</mat-label>
-                <mat-select name="teste4" [(ngModel)] = "aluno.ausculta">
+                <mat-select>
                     <mat-option *ngFor="let exame of exames" [value]="exame.value">
                         {{exame.viewValue}}
                     </mat-option>
@@ -17,7 +17,7 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Aferição da Pressão Arterial</mat-label>
-                <mat-select name="teste5" [(ngModel)] = "aluno.pressao">
+                <mat-select>
                     <mat-option *ngFor="let exame of exames" [value]="exame.value">
                         {{exame.viewValue}}
                     </mat-option>
@@ -26,7 +26,7 @@
             
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Anamnese</mat-label>
-                <mat-select name="teste6" [(ngModel)] = "aluno.anamnese">
+                <mat-select>
                     <mat-option *ngFor="let exame of exames" [value]="exame.value">
                         {{exame.viewValue}}
                     </mat-option>
@@ -44,37 +44,37 @@
     <div class="gridSolution nice-input">
         <mat-form-field class="example-full-width ">
             <mat-label>Nome Completo</mat-label>
-            <input matInput type="text" [(ngModel)] = "aluno.nome">
+            <input matInput type="text" [(ngModel)] = "aluno.nomeCompleto">
         </mat-form-field>
 
         <mat-form-field class="example-full-width ">
             <mat-label>Peso</mat-label>
-            <input matInput placeholder="Kg" type="number" [(ngModel)] = "aluno.peso">
+            <input matInput placeholder="Kg" type="number" [(ngModel)] = "aluno.fichaPeso">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Altura</mat-label>
-            <input matInput placeholder="Metros" type="number" [(ngModel)] = "aluno.altura">
+            <input matInput placeholder="Metros" type="number" [(ngModel)] = "aluno.fichaAltura">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Pressão arterial</mat-label>
-            <input matInput type="number" [(ngModel)] = "aluno.valorPressao">
+            <input matInput type="number" [(ngModel)] = "aluno.fichaPressao">
         </mat-form-field>
 
         <mat-form-field class="example-full-width ">
             <mat-label>% Gordura no Corpo</mat-label>
-            <input matInput type="number" [(ngModel)] = "aluno.gordura">
+            <input matInput type="number" [(ngModel)] = "aluno.gorfichaPercentualGorduradura">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>% Massa Magra</mat-label>
-            <input matInput type="number" [(ngModel)] = "aluno.massaMagra">
+            <input matInput type="number" [(ngModel)] = "aluno.fichaPercentualMassaMagra">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>IMC</mat-label>
-            <input matInput placeholder="Kg/m²" [(ngModel)] = "aluno.imc">
+            <input matInput placeholder="Kg/m²" [(ngModel)] = "aluno.fichaIMC">
         </mat-form-field>
     </div>
     
@@ -83,7 +83,7 @@
         <form class="example-form" #loginForm='ngForm' name="teste3">
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>O paciente está habil para atividade física</mat-label>
-                <mat-select name="teste2" [(ngModel)] = "aluno.aprovado">
+                <mat-select name="teste2" [(ngModel)] = "aluno.fichaSituacao">
                     <mat-option *ngFor="let aprovacao of aprovacaos" [value]="aprovacao.value">
                         {{aprovacao.viewValue}}
                     </mat-option>

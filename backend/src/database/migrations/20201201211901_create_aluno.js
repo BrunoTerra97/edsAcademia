@@ -7,7 +7,7 @@ exports.up = function (knex) {
     table.string("senha");
     table.string("cpf");
     table.string("identidade");
-    table.string("dataNascimento");
+    table.date("dataNascimento");
     table.string("cartaoNumero");
     table.string("cartaoBandeira");
     table.string("cartaoProprietario");
@@ -21,7 +21,11 @@ exports.up = function (knex) {
     table.string("fichaPercentualMassaMagra");
     table.string("fichaIMC");
     table.string("fichaSituacao");
-    // table.string('uf', 2)
+    // colunas de medico
+    table.string("crm");
+    //colunas de plano
+    table.string("idPlano");
+    table.foreign("idPlano").references("id").inTable("plano");
   });
 };
 

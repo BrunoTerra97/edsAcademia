@@ -6,6 +6,11 @@ interface Habilitacao {
   viewValue: string;
 }
 
+interface Tipo {
+  value: any;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-secretaria',
   templateUrl: './secretaria.component.html',
@@ -22,26 +27,38 @@ export class SecretariaComponent implements OnInit {
     {value: true, viewValue: 'Sim'},
     {value: false, viewValue: 'Não'}
   ];
+  modalidades: Tipo[] = [
+    {value: 0, viewValue: 'Natação'},
+    {value: 1, viewValue: 'Crossfit'},
+    {value: 2, viewValue: 'Spinning'},
+    {value: 3, viewValue: 'Ritmos'},
+    {value: 4, viewValue: 'Musculação'}
+  ];
+  planos: Tipo[] = [
+    {value: 0, viewValue: 'Mensal'},
+    {value: 1, viewValue: 'Semestral'},
+    {value: 1, viewValue: 'Anual'}
+  ];
   aluno: any = {
     nome: "",
-    ausculta: null,
-    pressao: null,
-    anamnese: null,
-    peso: null,
-    altura: null,
-    valorPressao: null,
-    gordura: null,
-    massaMagra: null,
-    imc: null,
-    aprovado: false
+    cpf: null,
+    identidade: null,
+    dataNascimento: null,
+    cartaoNumero: null,
+    cartaoBandeira: null,
+    cartaoProprietario: null,
+    idModalidade: null
   };
+  planoEscolhido: any;
   nomeSecretaria: any = "Fulano";
-  alunos: any;
+  usuarios: any;
 
   constructor(private service: GeralService) { }
 
   ngOnInit(): void {
-    this.alunos = getUsersAllowed()
+    this.service.getUsers().subscribe((value: any) => {
+      this.usuarios = value.filter((usuario: any) => usuario.fichaSituacao == "true");
+    })
   }
 
   canFinish(isHouse: boolean) {

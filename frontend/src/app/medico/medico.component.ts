@@ -23,18 +23,15 @@ export class MedicoComponent implements OnInit {
     {value: false, viewValue: 'Não'}
   ];
 
-  aluno: any = {
-    nome: "",
-    ausculta: null,
-    pressao: null,
-    anamnese: null,
-    peso: null,
-    altura: null,
-    valorPressao: null,
-    gordura: null,
-    massaMagra: null,
-    imc: null,
-    aprovado: false
+  aluno = {
+    nomeCompleto: "",
+    fichaPeso: null,
+    fichaAltura: null,
+    fichaPressao: null,
+    fichaPercentualGordura: null,
+    fichaPercentualMassaMagra: null,
+    fichaIMC: null,
+    fichaSituacao: false
   };
   nomeMedico: any = "Fulano";
   // aprovado: any = false;
@@ -51,9 +48,4 @@ export class MedicoComponent implements OnInit {
   ngOnInit(): void {
     //getUser();
   }
-
-  canFinish(isHouse: boolean) {
-    return this.aluno.aprovado;
-  }
-
 }

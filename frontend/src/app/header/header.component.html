@@ -3,7 +3,12 @@
     <img width="40" alt="Angular Logo" src="../../assets/halter.svg" />
     <span>Bem vindo</span>
     <div class="spacer"></div>
-    <button mat-button style="margin-right: 5em">
+    <button
+      *ngIf="!logoutDisabled"
+      mat-button
+      style="margin-right: 5em"
+      (click)="logout()"
+    >
       <mat-icon style="margin-right: 0.3em">login</mat-icon>Log Out
     </button>
   </div>

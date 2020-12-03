@@ -43,6 +43,7 @@ import { SecretariaComponent } from './secretaria/secretaria.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { HeaderComponent } from './header/header.component';
 import { ProfessorComponent } from './professor/professor.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ProfessorComponent } from './professor/professor.component';
     ProfessorComponent,
   ],
   imports: [
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,

@@ -6,12 +6,18 @@ import { Injectable } from '@angular/core';
 })
 export class GeralService {
 
-  usuarios: any;
-
   constructor(private http: HttpClient) {}
 
-  getUsersAllowed() {
-    this.usuarios = this.http.get('localhost:3333/usuarios');
-    return this.usuarios.filter( (usuario: any) => usuario.fichaSituacao == "true")
+  getUsers() {
+    return this.http.get('localhost:3333/usuarios');
+  }
+
+  getUser() {
+    return this.http.get('localhost:3333/usuario');
+  }
+
+  login(login: any) {
+    console.log(login);
+    return this.http.post('http://localhost:3333/usuarioGet', login);
   }
 }
